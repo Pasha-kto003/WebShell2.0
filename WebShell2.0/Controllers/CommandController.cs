@@ -25,10 +25,14 @@ namespace WebShell2._0.Controllers
 
 
         // GET api/<CommandController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("CommandName")]
+        public async Task<ActionResult<CommandApi>> Get(string commandName)
         {
-            return "value";
+            var command = dbContext.Commands.FirstOrDefault(s=> s.CommandName == commandName);
+            if (command == null)
+                return NotFound();
+            //return Ok(CreateUnitApi(unit, products));
+            return Ok((CommandApi)command);
         }
 
         // POST api/<CommandController>
