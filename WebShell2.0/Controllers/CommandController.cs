@@ -72,17 +72,5 @@ namespace WebShell2._0.Controllers
             }
             return output;
         }
-
-        // PUT api/<CommandController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CommandController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
