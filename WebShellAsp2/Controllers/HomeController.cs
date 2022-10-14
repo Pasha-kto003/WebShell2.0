@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModelsApi;
 using System.Diagnostics;
 using WebShellAsp2.Models;
 
@@ -23,17 +24,28 @@ namespace WebShellAsp2.Controllers
             return View();
         }
 
-        public IActionResult History()
+        public async Task<IActionResult> History()
         {
-            return View(/*здесь нужен вывод из сервера*/);
+            var commands = new List<CommandHistoryApi>();
+            commands = await Api.GetListAsync<List<CommandHistoryApi>>("CommandHistory");
+            return View("History", commands);
         }
 
-        public IActionResult EnterCommand(Command command)
+        public async Task<IActionResult> EnterCommand(string CommandName)
         {
             Command c = new Command();
-            c.CommandName = command.CommandName;
-            return RedirectToAction("Privacy"); //заглушка
+            c.CommandName = CommandName;
+            CommandApi commandApi = new CommandApi();
+            commandApi.CommandName = CommandName;
+            var commandApi1 = await Api.PostAsync(commandApi, "Command", commandApi.CommandName);
+            //PostCommand(commandApi);
+            return View("Index", c);
         }
+
+        //public async Task PostCommand(CommandApi command)
+        //{
+        //    var commandApi = await Api.PostAsync<CommandApi>(command, "Command", command.CommandName);
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

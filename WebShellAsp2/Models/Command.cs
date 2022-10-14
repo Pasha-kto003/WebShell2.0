@@ -5,5 +5,6 @@
         public int ID { get; set; }
         public string? CommandName { get; set; }
         public string? CommandParametr { get; set; }
+        public string CommandEnter { get; set; }
     }
 }
