@@ -1,0 +1,42 @@
+﻿Данные настройки помогут вам запустить данный проект на вашей системе.
+1. Укажите базу данных в MS SQL:
+
+Добавьте в MS SQL базу данных с именем WebShell_DB;
+Скрипт для создания базы данных:
+USE [WebShell_DB]
+GO
+/****** Object:  Table [dbo].[Command]    Script Date: 13.10.2022 18:34:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Command](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CommandName] [varchar](max) NULL,
+	[CommandParametr] [varchar](50) NULL,
+ CONSTRAINT [PK_Command] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CommandHistory]    Script Date: 13.10.2022 18:34:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CommandHistory](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CommandId] [int] NULL,
+	[DateUsing] [datetime] NULL,
+	[CommandAnswer] [text] NULL,
+ CONSTRAINT [PK_CommandHistory] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+2.Далее в проекте WebShellAsp2 нужно зайти в класс Api и посмотреть на переменную сервер и ее значение, зайдите в проект WebShell2.0 в папку Properties в документ launchSettings.json.
+Вам следует сравнить ссылку в перменной server (static string server = "http://localhost:5179/api/";) и строку ("applicationUrl": "http://localhost:5179" в элементе profiles).
+Если они совпадают то можно запускать приложение. В противном случае скопируйте ссылку из applicationUrl и вставьте ее в переменную server с добавлением к ссылке "/api/";
