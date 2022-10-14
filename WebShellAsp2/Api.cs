@@ -22,18 +22,14 @@ namespace WebShellAsp2
             return result;
         }
 
-        public static async Task<T> PostAsync<T>(T value, string controller, string commandName) /*where T : ModelApi.ApiBaseType*/ //http://localhost:5179/api/Command/CommandName
+        public static async Task<string> PostAsync<T>(T value, string controller, string commandName) //CommandName?commandName=dir
         {
-            CommandApi command = new CommandApi();
-            command = value as CommandApi;
             var str = JsonSerializer.Serialize(value, typeof(T));
-            var answer = await client.PostAsync(server + controller + $"/{commandName}",  new StringContent(str, Encoding.UTF8, "application/json"));
+            var answer = await client.PostAsync(server + controller + $"/CommandName?commandName={commandName}", new StringContent(str, Encoding.UTF8, "application/json"));
             if (answer.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                return value;
+                return "400";
             string answerText = await answer.Content.ReadAsStringAsync();
-            //if (!int.TryParse(answerText, out int result))
-            //    return null;
-            return value;
+            return answerText;
         }
 
         public static async Task<T> EnterAsync<T>(T value, string password, string controller) /*where T : ModelApi.ApiBaseType*/

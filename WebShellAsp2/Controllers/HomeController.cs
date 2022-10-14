@@ -37,7 +37,7 @@ namespace WebShellAsp2.Controllers
             c.CommandName = CommandName;
             CommandApi commandApi = new CommandApi();
             commandApi.CommandName = CommandName;
-            var commandApi1 = await Api.PostAsync(commandApi, "Command", commandApi.CommandName);
+            var commandApi1 = await Api.PostAsync(commandApi, "Command", CommandName);
             //PostCommand(commandApi);
             return View("Index", c);
         }

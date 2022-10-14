@@ -37,26 +37,26 @@ namespace WebShell2._0.Controllers
 
         // POST api/<CommandController>
         [HttpPost("CommandName")]
-        public async Task<ActionResult<string>> PostCommand([FromBody] CommandApi commandapi)
+        public async Task<ActionResult<string>> PostCommand(string commandName)
         {
             Process p = new Process();
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.WorkingDirectory = @"C:\"; //можно убрать @"C:\Windows\System32\" и заменить на @"C:\"
+            p.StartInfo.WorkingDirectory = @"C:\Windows\System32\"; //можно убрать @"C:\Windows\System32\" и заменить на @"C:\"
             p.StartInfo.FileName = "cmd.exe";
             p.Start();
-            p.StandardInput.WriteLine(commandapi.CommandName);
+            p.StandardInput.WriteLine(commandName);
             p.StandardInput.WriteLine("exit");
             string output = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
             Console.WriteLine(output);
             var commands = dbContext.Commands.ToList();
-            var search = commands.FirstOrDefault(s=> s.CommandName == commandapi.CommandName);
+            var search = commands.FirstOrDefault(s=> s.CommandName == commandName);
             if(search == null)
             {
                 search = new Command();
-                search.CommandName = commandapi.CommandName;
+                search.CommandName = commandName;
                 dbContext.Commands.Add(search);
                 dbContext.SaveChanges();
             }
@@ -69,7 +69,7 @@ namespace WebShell2._0.Controllers
                 dbContext.CommandHistories.Add(commandhistory);
                 dbContext.SaveChanges();
             }
-            return output;
+            return Ok(output);
         }
     }
 }
