@@ -51,6 +51,8 @@ namespace WebShell2._0.Controllers
             string output = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
             Console.WriteLine(output);
+            var comm = new CommandApi();
+            comm.CommandEnter = output;
             var commands = dbContext.Commands.ToList();
             var search = commands.FirstOrDefault(s=> s.CommandName == commandName);
             if(search == null)
@@ -69,6 +71,7 @@ namespace WebShell2._0.Controllers
                 dbContext.CommandHistories.Add(commandhistory);
                 dbContext.SaveChanges();
             }
+            
             return Ok(output);
         }
     }
