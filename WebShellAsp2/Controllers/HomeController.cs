@@ -31,6 +31,26 @@ namespace WebShellAsp2.Controllers
             return View("History", commands);
         }
 
+        public async Task<ActionResult> DetailsView(int id)
+        {
+            var commands = new List<CommandHistory>();
+            commands = await Api.GetListAsync<List<CommandHistory>>("CommandHistory");
+            if (id != null)
+            {
+                CommandHistory history = commands.FirstOrDefault(s => s.ID == id);
+                if (history != null)
+                    return View(history);
+            }
+            return NotFound();
+            //if (id != null)
+            //{
+            //    CommandHistory phone = await db.Phones.FirstOrDefaultAsync(p => p.ID == id);
+            //    if (phone != null)
+            //        return View(phone);
+            //}
+            //return NotFound();
+        }
+
         public async Task<IActionResult> EnterCommand(string CommandName)
         {
             Command c = new Command();
