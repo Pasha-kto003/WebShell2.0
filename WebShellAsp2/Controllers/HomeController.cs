@@ -26,8 +26,8 @@ namespace WebShellAsp2.Controllers
 
         public async Task<IActionResult> History()
         {
-            var commands = new List<CommandHistoryApi>();
-            commands = await Api.GetListAsync<List<CommandHistoryApi>>("CommandHistory");
+            var commands = new List<CommandHistory>();
+            commands = await Api.GetListAsync<List<CommandHistory>>("CommandHistory");
             return View("History", commands);
         }
 
