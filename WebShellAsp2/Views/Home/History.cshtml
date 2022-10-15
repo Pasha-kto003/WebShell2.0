@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CommandId)
+                @Html.DisplayNameFor(model => model.Command.CommandName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateUsing)
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CommandId)
+                @Html.DisplayFor(modelItem => item.Command.CommandName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateUsing)
@@ -44,7 +44,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                <a asp-action="Details" asp-controller="History" asp-route-id="@item.ID">Подробнее</a>
+                <a asp-action="DetailsView" asp-controller="History" asp-route-id="@item.ID">Подробнее</a>
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>

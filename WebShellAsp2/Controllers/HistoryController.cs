@@ -7,6 +7,12 @@ namespace WebShellAsp2.Controllers
 {
     public class HistoryController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
+
+        public HistoryController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
         // GET: HistoryController
         public ActionResult Index()
         {
@@ -14,87 +20,20 @@ namespace WebShellAsp2.Controllers
         }
 
         // GET: HistoryController/Details/5
-        //public async Task<ActionResult> Details(int id)
-        //{
-        //    var commands = new List<CommandHistory>();
-        //    commands = await Api.GetListAsync<List<CommandHistory>>("CommandHistory");
-        //    if (id != null)
-        //    {
-        //        CommandHistory history = commands.FirstOrDefault(s=> s.ID == id);
-        //        if (history != null)
-        //            return View(history);
-        //    }
-        //    return NotFound();
-        //    //if (id != null)
-        //    //{
-        //    //    CommandHistory phone = await db.Phones.FirstOrDefaultAsync(p => p.ID == id);
-        //    //    if (phone != null)
-        //    //        return View(phone);
-        //    //}
-        //    //return NotFound();
-        //}
-
-        // GET: HistoryController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> DetailsView(int id)
         {
-            return View();
-        }
-
-        // POST: HistoryController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            var commandshistory = new List<CommandHistory>();
+            var commands = new List<Command>();
+            commandshistory = await Api.GetListAsync<List<CommandHistory>>("CommandHistory");
+            commands = await Api.GetListAsync<List<Command>>("Command");
+            if (id != null)
             {
-                return RedirectToAction(nameof(Index));
+                CommandHistory history = commandshistory.FirstOrDefault(s => s.ID == id);
+                history.Command = commands.FirstOrDefault(s => s.ID == history.CommandId);
+                if (history != null)
+                    return View(history);
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HistoryController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HistoryController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HistoryController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HistoryController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return NotFound();
         }
     }
 }

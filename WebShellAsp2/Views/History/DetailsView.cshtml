@@ -17,10 +17,10 @@
             @Html.DisplayFor(model => model.ID)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CommandId)
+            @Html.DisplayNameFor(model => model.Command.CommandName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CommandId)
+            @Html.DisplayFor(model => model.Command.CommandName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateUsing)
@@ -38,5 +38,5 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="History" asp-controller="Home">Back to List</a>
 </div>
