@@ -21,5 +21,17 @@ namespace WebShell2._0.Controllers
         {
             return dbContext.CommandHistories.Select(s => (CommandHistoryApi)s);
         }
+
+        [HttpGet("CommandAnswer")]
+        public async Task<ActionResult> GetByAnswer(string commandAnswer)
+        {
+            commandAnswer = commandAnswer.ToString();
+            var commands = dbContext.CommandHistories.Select(s=> s.CommandAnswer == commandAnswer);
+            if(commands == null)
+            {
+                BadRequest("NotFound commands in history");
+            }
+            return Ok(commands);
+        }
     }
 }
