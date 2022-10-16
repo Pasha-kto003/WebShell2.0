@@ -28,12 +28,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="History">History</a>
                         </li>
+                        <li class="nav-item">
+                            <label class="dark-version">
+                            <input type="checkbox" onchange="toggledark()" id="toggledark">
+                            <span class="toggledark round"></span>
+                            </label>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
+        <input type="checkbox" id="side-checkbox" />
+    <div class="side-panel">
+    <label class="side-button-2" for="side-checkbox">+</label>    
+    <div class="side-title">Выдвижная панель:</div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+    <div class="side-button-1-wr">
+    <label class="side-button-1" for="side-checkbox">
+        <div class="side-b side-open">Открыть</div>
+        <div class="side-b side-close">Закрыть</div>
+    </label>
+    </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

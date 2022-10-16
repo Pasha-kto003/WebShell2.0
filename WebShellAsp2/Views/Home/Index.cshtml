@@ -2,15 +2,27 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<svg class="water" viewBox="0 0 574 100" enable-background="new 0 0 574 100" xml:space="preserve">
+    <defs>
+        <pattern id="water" width=".25" height="1.1" patternContentUnits="objectBoundingBox">
+            <path fill="#337AB7" d="M0.25,1H0c0,0,0-0.659,0-0.916c0.083-0.303,0.158,0.334,0.25,0C0.25,0.327,0.25,1,0.25,1z"/>
+        </pattern>  
+        <text x="50%" y="-30%" id="watertext" transform="matrix(1 0 0 1 -8.0684 116.7852)">Web Shell</text>  
+        <mask id="text_mask">
+            <use x="0" y="0" xlink:href="#watertext" opacity="1" fill="#fff"/>
+        </mask>
+    </defs>
+    <use x="0" y="0" xlink:href="#watertext" fill="#BFE2FF"/>
+    <rect class="water-fill" mask="url(#text_mask)" fill="url(#water)" x="-400" y="0" width="1600" height="120"/>
+</svg>
 
 <div class="text-center" style="text-align:center; align-content:center; justify-content:center;">
-    <h1 class="display-4">Web Shell</h1>
-    <h2 style="margin-bottom:50px;">Введите команду.</h2>
+    <h2 style="margin-bottom:50px; color:blue">Введите команду.</h2>
     <form asp-action="EnterCommand" asp-controller="home" style="margin: 0 auto; width:250px; text-align:center; align-content:center; justify-content:center;">
          <div class="form-group">
             <label class="control-label">Вывод команды</label>
             <input type="text" asp-for="CommandName" class="form-control"/>
-            <textarea class="form-control" asp-for="CommandEnter" aria-label="With textarea" style="margin-top:50px;width:500px; height:400px;"></textarea>
+            <textarea class="form-control" asp-for="CommandEnter" aria-label="With textarea" style="margin-top:50px;width:500px; height:400px; align-items:center; justify-content:center"></textarea>
             <input type="submit" value="Выполнить" class="btn btn-primary" role="button" style="margin-top: 50px;"/>
         </div>
     </form>
