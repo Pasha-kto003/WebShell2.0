@@ -12,21 +12,24 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebShellAsp2</a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebShellAsp2</a>*@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item" style="width:200px;">                          
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item" style="width:200px;">           
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="History">History</a>
+                        <li class="nav-item" style="margin-left:300px;">
+                                <div class="side-button-1-wr">
+                                <label class="side-button-1" for="side-checkbox">
+                                <div class="side-b side-open">Открыть</div>
+                                <div class="side-b side-close">Закрыть</div>
+                                </label>
+                                </div>
                         </li>
                         <li class="nav-item">
                             <label class="dark-version">
@@ -43,26 +46,35 @@
         <input type="checkbox" id="side-checkbox" />
     <div class="side-panel">
     <label class="side-button-2" for="side-checkbox">+</label>    
-    <div class="side-title">Выдвижная панель:</div>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div class="side-title">WebShellAsp2-меню:</div>
+    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index" style="font-size:20px;">Home</a>
+    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy" style="font-size:20px;">Privacy</a>
+    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="History" style="font-size:20px;">History</a>
     </div>
-    <div class="side-button-1-wr">
+    @*<div class="side-button-1-wr">
     <label class="side-button-1" for="side-checkbox">
         <div class="side-b side-open">Открыть</div>
         <div class="side-b side-close">Закрыть</div>
     </label>
-    </div>
+    </div>*@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - WebShellAsp2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© WebShellAsp2</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a asp-controller="Home" asp-action="Privacy" class="nav-link px-2 text-muted">Privacy</a></li>
+      <li class="nav-item"><a asp-controller="Home" asp-action="History" class="nav-link px-2 text-muted">History</a></li>
+    </ul>
+  </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

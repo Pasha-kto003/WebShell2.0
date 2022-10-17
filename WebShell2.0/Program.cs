@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using WebShell2._0.DB;
 
 var builder = WebApplication.CreateBuilder(args);
