@@ -50,9 +50,9 @@ namespace WebShellAsp2.Controllers
             {
                 c.CommandEnter = history.CommandAnswer;
             }
-            //c.CommandEnter = commandhistory.FirstOrDefault(s=> s.Command.CommandEnter == CommandName).CommandAnswer;
             return View("Index", c);
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
