@@ -23,7 +23,7 @@
 
 После этого нужно нажать кнопку "Применить" после чего закрыть данное окно.
 
-2. Далее зайдите в проект WebShell2.0 в файл launchsettings.json и посмотрите на указанный там url:
+2. Далее зайдите в проект WebShell2.0 в файл launchsettings.json, который находится в папке Properties и посмотрите на указанный там url:
 
 ![image](https://user-images.githubusercontent.com/73583155/196360708-bcfe6121-826c-4087-9a66-ffd2579b31b5.png)
 
