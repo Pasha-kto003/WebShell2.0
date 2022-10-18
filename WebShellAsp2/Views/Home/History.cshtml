@@ -5,11 +5,47 @@
 }
 
 <h1>HistoryView</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="resp-tab">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Command.CommandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUsing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommandAnswer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Command.CommandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUsing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommandAnswer)
+            </td>
+            <td>
+                <a asp-action="DetailsView" asp-controller="History" asp-route-id="@item.ID">Подробнее</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> 
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -43,11 +79,9 @@
                 @Html.DisplayFor(modelItem => item.CommandAnswer)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 <a asp-action="DetailsView" asp-controller="History" asp-route-id="@item.ID">Подробнее</a>
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
     </tbody>
-</table>
+</table>*@  
