@@ -43,7 +43,7 @@ namespace WebShell2._0.Controllers
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.WorkingDirectory = @"C:\Windows\System32\"; //можно убрать @"C:\Windows\System32\" и заменить на @"C:\"
+            //p.StartInfo.WorkingDirectory = @"C:\Windows\System32\"; //можно убрать @"C:\Windows\System32\" если ваш cmd хорошо работает. Данное свойство было добавлено для теста на моем ПК
             p.StartInfo.FileName = "cmd.exe";
             p.Start();
             p.StandardInput.WriteLine(commandName);
